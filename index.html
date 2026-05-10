@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>feane | Order</title>
+
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="icon" type="image/png" href="de28eaa2-f25e-44bc-9485-874aee5ef803.png">
+
+<style>
+
+body{
+    background:#0b0b0b;
+    color:#fff;
+    font-family: Arial;
+}
+
+.navbar{
+    background:#111;
+    border-bottom:1px solid #222;
+}
+
+.card{
+    background:#161616;
+    border:1px solid #222;
+    transition:0.3s;
+    overflow:hidden;
+}
+
+.card:hover{
+    transform:translateY(-5px) scale(1.02);
+    border-color:#ffc107;
+    box-shadow:0 0 20px rgba(255,193,7,.3);
+}
+
+.price{
+    color:#ffc107;
+    font-weight:bold;
+    font-size:18px;
+}
+
+.btn-yellow{
+    background:#ffc107;
+    border:none;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.btn-yellow:hover{
+    background:#ffce3a;
+    transform:scale(1.03);
+}
+
+.cart-box{
+    background:#111;
+    border:1px solid #222;
+    padding:15px;
+    border-radius:10px;
+    position: sticky;
+    top:20px;
+}
+
+.item-img{
+    width:100%;
+    height:320px;
+    object-fit:cover;
+    display:block;
+    border-radius:8px;
+}
+
+.qty-btn{
+    width:28px;
+    height:28px;
+    border:none;
+    background:#ffc107;
+    font-weight:bold;
+}
+
+.remove-btn{
+    background:red;
+    border:none;
+    color:#fff;
+    padding:2px 8px;
+    border-radius:5px;
+}
+
+input{
+    background:#111 !important;
+    border:1px solid #333 !important;
+    color:#fff !important;
+}
+
+.lang-switch button{
+    margin:2px;
+    background:#222;
+    color:#fff;
+    border:none;
+    padding:5px 10px;
+    border-radius:6px;
+}
+
+.lang-switch button:hover{
+    background:#ffc107;
+    color:#000;
+}
+
+.card h5{
+    color:#fff !important;
+}
+
+/* SEARCH */
+
+#search{
+    height:52px;
+    border-radius:12px;
+    font-size:17px;
+    padding-left:15px;
+    box-shadow:0 0 15px rgba(255,193,7,.1);
+    transition:.3s;
+}
+
+#search:focus{
+    box-shadow:0 0 20px #ffc107;
+    border-color:#ffc107 !important;
+}
+/* ========================================= */
+/* RESPONSIVE */
+/* ========================================= */
+
+/* ========= LARGE TABLET ========= */
+
+@media (max-width:992px){
+
+    .item-img{
+        height:260px;
+    }
+
+    .cart-box{
+        margin-top:30px;
+        position:relative;
+        top:0;
+    }
+
+    .navbar{
+        flex-direction:column;
+        gap:15px;
+        text-align:center;
+    }
+
+}
+
+/* ========= TABLET ========= */
+
+@media (max-width:768px){
+
+    .container{
+        max-width:100%;
+    }
+
+    .navbar{
+        padding:15px;
+    }
+
+    .navbar h5{
+        font-size:20px;
+    }
+
+    .lang-switch{
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .lang-switch button{
+        padding:6px 12px;
+        font-size:14px;
+    }
+
+    #search{
+        height:48px;
+        font-size:15px;
+    }
+
+    .item-img{
+        height:230px;
+    }
+
+    .card{
+        padding:15px !important;
+    }
+
+    .card h5{
+        font-size:18px;
+    }
+
+    .price{
+        font-size:17px;
+    }
+
+    .btn-yellow{
+        padding:10px;
+        font-size:15px;
+    }
+
+    .cart-box{
+        margin-top:35px;
+        padding:20px;
+    }
+
+    .cart-box h5{
+        font-size:20px;
+    }
+
+    input{
+        font-size:15px !important;
+        height:45px;
+    }
+
+    #orderBtn{
+        height:48px;
+        font-size:16px;
+    }
+
+}
+
+/* ========= MOBILE ========= */
+
+@media (max-width:576px){
+
+    body{
+        overflow-x:hidden;
+    }
+
+    .container{
+        padding-left:15px;
+        padding-right:15px;
+    }
+
+    .navbar{
+        padding:12px;
+    }
+
+    .navbar h5{
+        font-size:18px;
+        margin:0;
+    }
+
+    .lang-switch{
+        gap:5px;
+    }
+
+    .lang-switch button{
+        font-size:13px;
+        padding:5px 10px;
+    }
+
+    #menuTitle,
+    #cartTitle{
+        font-size:22px;
+    }
+
+    #search{
+        height:45px;
+        border-radius:10px;
+        font-size:14px;
+    }
+
+    .row.g-3{
+        gap:10px 0;
+    }
+
+    .item-img{
+        height:210px;
+        object-fit:cover;
+    }
+
+    .card{
+        border-radius:14px;
+    }
+
+    .card h5{
+        font-size:17px;
+    }
+
+    .price{
+        font-size:16px;
+    }
+
+    .btn-yellow{
+        font-size:14px;
+        height:45px;
+    }
+
+    .cart-box{
+        margin-top:30px;
+        border-radius:15px;
+    }
+
+    .qty-btn{
+        width:32px;
+        height:32px;
+    }
+
+    .remove-btn{
+        padding:3px 10px;
+        font-size:13px;
+    }
+
+    input{
+        height:44px;
+        font-size:14px !important;
+    }
+
+    #orderBtn{
+        height:46px;
+        font-size:15px;
+    }
+
+}
+
+/* ========= SMALL MOBILE ========= */
+
+@media (max-width:400px){
+
+    .navbar h5{
+        font-size:16px;
+    }
+
+    .lang-switch button{
+        font-size:12px;
+        padding:4px 8px;
+    }
+
+    .item-img{
+        height:180px;
+    }
+
+    .card h5{
+        font-size:15px;
+    }
+
+    .price{
+        font-size:15px;
+    }
+
+    .btn-yellow{
+        height:42px;
+        font-size:13px;
+    }
+
+    #menuTitle,
+    #cartTitle{
+        font-size:20px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<div class="navbar p-3 d-flex justify-content-between">
+
+<h5>🍔 Food Order</h5>
+
+<div class="lang-switch">
+    <button onclick="setLang('en')">EN</button>
+    <button onclick="setLang('ar')">AR</button>
+    <button onclick="setLang('fr')">FR</button>
+    <button onclick="setLang('de')">DE</button>
+</div>
+
+</div>
+
+<div class="container py-4">
+
+<div class="row">
+
+<!-- MENU -->
+
+<div class="col-md-8">
+
+<h4 id="menuTitle" class="mb-3">Menu</h4>
+
+<!-- SEARCH -->
+
+<input 
+type="text"
+id="search"
+class="form-control mb-4"
+placeholder="Search food..."
+onkeyup="searchItems()">
+
+<!-- ITEMS -->
+
+<div class="row g-3" id="menu"></div>
+
+</div>
+
+<!-- CART -->
+
+<div class="col-md-4">
+
+<div class="cart-box">
+
+<h5 id="cartTitle">Your Cart</h5>
+
+<div id="cart"></div>
+
+<hr>
+
+<h5>Total: $<span id="total">0</span></h5>
+
+<input id="name" class="form-control mt-2" placeholder="Name">
+<input id="email" class="form-control mt-2" placeholder="Email">
+<input id="phone" class="form-control mt-2" placeholder="Phone">
+<input id="address" class="form-control mt-2" placeholder="Address">
+
+<button id="orderBtn"
+class="btn btn-success w-100 mt-3"
+onclick="placeOrder()">
+
+Place Order
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+<script>
+
+let cart = [];
+
+/* ITEMS */
+
+
+
+
+const items = [
+
+    ["Cheese Lovers Pizza",18,"f1.jpg"],
+    ["Pepperoni Pizza",20,"f2.jpg"],
+    ["BBQ Chicken Pizza",22,"f3.jpg"],
+    ["Veggie Pizza",17,"f4.jpg"],
+    ["Supreme Pizza",24,"f5.jpg"],
+    ["Margherita Pizza",16,"f6.jpg"],
+    ["Tuna Pizza",21,"f7.jpg"],
+    ["Seafood Pizza",26,"f8.jpg"],
+    ["Spicy Mexican Pizza",23,"f9.jpg"],
+    ["Four Cheese Pizza",22,"f10.jpg"],
+
+    ["Classic Beef Burger",19,"f11.jpg"],
+    ["Double Cheese Burger",23,"f12.jpg"],
+    ["Mushroom Burger",18,"f13.jpg"],
+    ["BBQ Burger",21,"f14.jpg"],
+    ["Chicken Burger",17,"f15.jpg"],
+    ["Zinger Burger",20,"f16.jpg"],
+    ["Spicy Jalapeno Burger",22,"f17.jpg"],
+    ["Bacon Burger",24,"f18.jpg"],
+    ["Grilled Burger",18,"f19.jpg"],
+    ["Mega Burger",27,"f20.jpg"],
+
+    ["Chicken Alfredo Pasta",20,"f21.jpg"],
+    ["Seafood Pasta",25,"f22.jpg"],
+    ["Creamy Mushroom Pasta",19,"f23.jpg"],
+    ["Spaghetti Bolognese",21,"f24.jpg"],
+    ["Penne Arrabbiata",18,"f25.jpg"],
+    ["Lasagna Plate",23,"f26.jpg"],
+    ["Mac and Cheese",17,"f27.jpg"],
+    ["Shrimp Pasta",24,"f28.jpg"],
+    ["Italian Pasta Mix",22,"f29.jpg"],
+    ["Chicken Pesto Pasta",21,"f30.jpg"],
+
+    ["Grilled Chicken Sandwich",18,"f31.jpg"],
+    ["Steak Sandwich",26,"f32.jpg"],
+    ["Tuna Sandwich",17,"f33.jpg"],
+    ["Club Sandwich",19,"f34.jpg"],
+    ["BBQ Chicken Sandwich",20,"f35.jpg"],
+    ["Crispy Chicken Wrap",18,"f36.jpg"],
+    ["Turkey Sandwich",21,"f37.jpg"],
+    ["Philly Steak Sandwich",27,"f38.jpg"],
+    ["Chicken Shawarma Wrap",16,"f39.jpg"],
+    ["Hot Dog Sandwich",15,"f40.jpg"],
+
+    ["French Fries",8,"f41.jpg"],
+    ["Curly Fries",9,"f42.jpg"],
+    ["Onion Rings",10,"f43.jpg"],
+    ["Mozzarella Sticks",11,"f44.jpg"],
+    ["Garlic Bread",7,"f45.jpg"],
+    ["Chicken Nuggets",12,"f46.jpg"],
+    ["Buffalo Wings",14,"f47.jpg"],
+    ["BBQ Wings",15,"f48.jpg"],
+    ["Potato Wedges",9,"f49.jpg"],
+    ["Cheese Balls",10,"f50.jpg"],
+
+    ["Greek Salad",13,"f51.jpg"],
+    ["Caesar Salad",14,"f52.jpg"],
+    ["Chicken Caesar Salad",16,"f53.jpg"],
+    ["Tuna Salad",15,"f54.jpg"],
+    ["Garden Salad",12,"f55.jpg"],
+    ["Coleslaw Salad",9,"f56.jpg"],
+    ["Pasta Salad",13,"f57.jpg"],
+    ["Avocado Salad",17,"f58.jpg"],
+    ["Shrimp Salad",19,"f59.jpg"],
+    ["Quinoa Salad",18,"f60.jpg"],
+
+    ["Chocolate Cake",12,"f61.jpg"],
+    ["Cheesecake",13,"f62.jpg"],
+    ["Brownies",10,"f63.jpg"],
+    ["Ice Cream Sundae",9,"f64.jpg"],
+    ["Molten Lava Cake",14,"f65.jpg"],
+    ["Donuts Box",11,"f66.jpg"],
+    ["Apple Pie",12,"f67.jpg"],
+    ["Tiramisu",15,"f68.jpg"],
+    ["Cupcakes",10,"f69.jpg"],
+    ["Waffles",13,"f70.jpg"],
+
+    ["Coca Cola",5,"f71.jpg"],
+    ["Pepsi",5,"f72.jpg"],
+    ["7UP",5,"f73.jpg"],
+    ["Orange Juice",7,"f74.jpg"],
+    ["Apple Juice",7,"f75.jpg"],
+    ["Mango Juice",8,"f76.jpg"],
+    ["Iced Coffee",9,"f77.jpg"],
+    ["Milkshake Chocolate",12,"f78.jpg"],
+    ["Milkshake Vanilla",12,"f79.jpg"],
+    ["Strawberry Smoothie",11,"f80.jpg"],
+
+    ["Espresso",6,"f81.jpg"],
+    ["Cappuccino",8,"f82.jpg"],
+    ["Latte",8,"f83.jpg"],
+    ["Hot Chocolate",9,"f84.jpg"],
+    ["Green Tea",6,"f85.jpg"],
+    ["Black Tea",5,"f86.jpg"],
+    ["Mineral Water",3,"f87.jpg"],
+    ["Sparkling Water",4,"f88.jpg"],
+    ["Energy Drink",8,"f89.jpg"],
+    ["Fresh Lemonade",7,"f90.jpg"]
+
+];
+
+/* DISPLAY MENU */
+
+let menu = document.getElementById("menu");
+
+function displayItems(data){
+
+menu.innerHTML = "";
+
+data.forEach(i=>{
+
+menu.innerHTML += `
+
+<div class="col-md-6">
+
+<div class="card p-3">
+
+<img class="item-img" src="${i[2]}">
+
+<h5 class="mt-3">${i[0]}</h5>
+
+<p class="price">$${i[1]}</p>
+
+<button class="btn btn-yellow w-100"
+onclick="addItem('${i[0]}',${i[1]})">
+
+Add To Cart
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+displayItems(items);
+
+/* SEARCH */
+
+function searchItems(){
+
+let value = document
+.getElementById("search")
+.value
+.toLowerCase();
+
+let filtered = items.filter(i =>
+i[0].toLowerCase().includes(value)
+);
+
+displayItems(filtered);
+
+}
+
+/* CART */
+
+function addItem(name,price){
+
+let found = cart.find(i=>i.name===name);
+
+if(found){
+    found.qty++;
+}else{
+    cart.push({
+        name,
+        price,
+        qty:1
+    });
+}
+
+render();
+
+}
+
+function increase(name){
+
+cart.find(i=>i.name===name).qty++;
+
+render();
+
+}
+
+function decrease(name){
+
+let item = cart.find(i=>i.name===name);
+
+item.qty--;
+
+if(item.qty<=0){
+cart = cart.filter(i=>i.name!==name);
+}
+
+render();
+
+}
+
+function removeItem(name){
+
+cart = cart.filter(i=>i.name!==name);
+
+render();
+
+}
+
+/* RENDER */
+
+function render(){
+
+let box = document.getElementById("cart");
+
+box.innerHTML = "";
+
+let total = 0;
+
+cart.forEach(i=>{
+
+total += i.price * i.qty;
+
+box.innerHTML += `
+
+<div class="mb-3">
+
+<b>${i.name}</b>
+
+<button class="remove-btn float-end"
+onclick="removeItem('${i.name}')">
+
+X
+
+</button>
+
+<div class="mt-2">
+
+<button class="qty-btn"
+onclick="decrease('${i.name}')">
+
+-
+
+</button>
+
+<span class="mx-2">${i.qty}</span>
+
+<button class="qty-btn"
+onclick="increase('${i.name}')">
+
++
+
+</button>
+
+</div>
+
+<p class="mt-2">$${(i.price*i.qty).toFixed(2)}</p>
+
+<hr>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("total").innerText =
+total.toFixed(2);
+
+}
+
+/* ORDER */
+
+function placeOrder(){
+
+let name = document.getElementById("name").value;
+let email = document.getElementById("email").value;
+let phone = document.getElementById("phone").value;
+let address = document.getElementById("address").value;
+
+if(!name || !email || !phone || !address || cart.length===0){
+
+alert("Fill all fields + add items");
+
+return;
+
+}
+
+alert("Order Placed Successfully 🚀");
+
+cart = [];
+
+render();
+
+}
+
+/* LANG */
+
+function setLang(lang){
+
+const t = {
+
+en:{
+menu:"Menu",
+cart:"Your Cart",
+btn:"Place Order"
+},
+
+ar:{
+menu:"القائمة",
+cart:"السلة",
+btn:"اطلب الآن"
+},
+
+fr:{
+menu:"Menu",
+cart:"Panier",
+btn:"Commander"
+},
+
+de:{
+menu:"Menü",
+cart:"Warenkorb",
+btn:"Bestellen"
+}
+
+};
+
+document.getElementById("menuTitle").innerText =
+t[lang].menu;
+
+document.getElementById("cartTitle").innerText =
+t[lang].cart;
+
+document.getElementById("orderBtn").innerText =
+t[lang].btn;
+
+}
+
+
+</script>
+
+</body>
+</html>
